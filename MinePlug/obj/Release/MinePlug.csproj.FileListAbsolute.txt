@@ -6,3 +6,4 @@ D:\WandS\MinePlug\MinePlug\obj\Release\MinePlug.csproj.GenerateResource.Cache
 D:\WandS\MinePlug\MinePlug\obj\Release\MinePlug.csproj.CoreCompileInputs.cache
 D:\WandS\MinePlug\MinePlug\obj\Release\MinePlug.exe
 D:\WandS\MinePlug\MinePlug\obj\Release\MinePlug.pdb
+D:\WandS\MinePlug\MinePlug\obj\Release\MinePlug.csprojResolveAssemblyReference.cache

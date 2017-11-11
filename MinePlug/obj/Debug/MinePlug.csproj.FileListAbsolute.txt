@@ -1,0 +1,9 @@
+D:\WandS\MinePlug\MinePlug\bin\Debug\MinePlug.exe.config
+D:\WandS\MinePlug\MinePlug\bin\Debug\MinePlug.exe
+D:\WandS\MinePlug\MinePlug\bin\Debug\MinePlug.pdb
+D:\WandS\MinePlug\MinePlug\obj\Debug\MinePlug.ImageSources.resources
+D:\WandS\MinePlug\MinePlug\obj\Debug\MinePlug.csproj.GenerateResource.Cache
+D:\WandS\MinePlug\MinePlug\obj\Debug\MinePlug.csproj.CoreCompileInputs.cache
+D:\WandS\MinePlug\MinePlug\obj\Debug\MinePlug.exe
+D:\WandS\MinePlug\MinePlug\obj\Debug\MinePlug.pdb
+D:\WandS\MinePlug\MinePlug\obj\Debug\MinePlug.csprojResolveAssemblyReference.cache

@@ -23,6 +23,7 @@ namespace MinePlug
                 Console.WriteLine("hello?\ninput numbers for what you want:\n1.run the plug of winmine\n0.exit\n");
                 Case = Convert.ToInt32(Console.ReadLine());
                 bool running = false;
+                int[] happyFace = new int[2];
                 switch (Case)
                 {
                     case 1:
@@ -34,10 +35,14 @@ namespace MinePlug
                         Pieces board = null;
                         while (true)
                         {
-                            //Thread.Sleep(50);
-                            board = init(row, col, ref board);
+                            board = init(row, col, ref happyFace);
                             if (!running)
                                 Console.WriteLine("running!");
+                            if (board == null)
+                            {
+                                Thread.Sleep(500);
+                                board = init(row, col, ref happyFace);
+                            }
                             if (board == null)
                             {
                                 firstRow = 0;
@@ -62,10 +67,10 @@ namespace MinePlug
                             else running = true;
                             if (board.CalNums() == false)
                             {
-                                if (board.happyFace[0] == 0)
+                                if (happyFace[0] == 0)
                                     Console.WriteLine(0);
                                 else
-                                    Click(board.happyFace[0] + 5, board.happyFace[1] + 5, false, true);
+                                    Click(happyFace[0] + 15, happyFace[1] + 15, false, true);
                                 continue;
                             }
                             // testPrint(ref board);

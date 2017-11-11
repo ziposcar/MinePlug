@@ -10,14 +10,9 @@ namespace MinePlug
 {
     public partial class main
     {
-        static Pieces init(int row, int col, ref Pieces oldBoard)
+        static Pieces init(int row, int col, ref int[] happyFace)
         {
             Pieces board = new Pieces(row, col);
-            if (oldBoard != null)
-            {
-                board.happyFace[0] = oldBoard.happyFace[0];
-                board.happyFace[1] = oldBoard.happyFace[1];
-            }
             int width = Screen.PrimaryScreen.Bounds.Width;
             int height = Screen.PrimaryScreen.Bounds.Height;
             Bitmap screenCut = new Bitmap(width, height);
@@ -28,54 +23,69 @@ namespace MinePlug
             LockBitmap baseScreen = new LockBitmap(screenCut);
             baseScreen.LockBits();
 
-            LockBitmap tmp;
+            LockBitmap tmp = null;
             bool Catch, catchTmp;
             Catch = false;
             int rBegin = 0, cBegin = 0;
             bool begin = false;
             if (firstRow == 0)
             {
-                tmp = new LockBitmap(State.index[14]);
-                tmp.LockBits();
-                for (int r = 0; r < height; r++)
+                for (int faceRound = 14; faceRound < 19; ++faceRound)
                 {
-                    for (int c = 0; c < width; c++)
+                    tmp = new LockBitmap(State.index[faceRound]);
+                    tmp.LockBits();
+                    for (int r = 0; r < height; r++)
                     {
-                        if (26 + c < width && 26 + r < height)
+                        for (int c = 0; c < width; c++)
                         {
-                            catchTmp = true;
-                            for (int rr = 0; rr < 26; rr += 2)
+                            if (26 + c < width && 26 + r < height)
                             {
-                                for (int cc = 0; cc < 26; cc += 2)
+                                catchTmp = true;
+                                for (int rr = 0; rr < 26; rr += 2)
                                 {
-                                    if (tmp.GetPixel(cc, rr) != baseScreen.GetPixel(cc + c, rr + r))
+                                    for (int cc = 0; cc < 26; cc += 2)
                                     {
-                                        catchTmp = false;
-                                        break;
+                                        if (tmp.GetPixel(cc, rr) != baseScreen.GetPixel(cc + c, rr + r))
+                                        {
+                                            catchTmp = false;
+                                            break;
+                                        }
                                     }
+                                    if (!catchTmp) break;
                                 }
-                                if (!catchTmp) break;
-                            }
-                            if (catchTmp)
-                            {
-                                board.happyFace[0] = r;
-                                firstRow = r + 40;
-                                board.happyFace[1] = firstCol = c;
-                                begin = true;
-                                tmp.UnlockBits();
-                                break;
+                                if (catchTmp)
+                                {
+                                    happyFace[0] = board.happyFace[0] = r;
+                                    firstRow = r + 40;
+                                    happyFace[1] = board.happyFace[1] = firstCol = c;
+                                    begin = true;
+                                    tmp.UnlockBits();
+                                    break;
+                                }
                             }
                         }
+                        if (begin) break;
                     }
                     if (begin)
-                        break;
+                    {
+                        if (faceRound == 14) break;
+                        else
+                        {
+                            Click(happyFace[0] + 15, happyFace[1] + 15, false, true);
+                            System.Threading.Thread.Sleep(50);
+                            Click(happyFace[0] + 15, happyFace[1] + 15, false, true);
+                            break;
+                        }
+                    }
+                    tmp.UnlockBits();
                 }
                 if (!begin)
                 {
                     tmp.UnlockBits();
+                    //Console.WriteLine("line 76");
                     return null;
                 }
-                for (int r = rBegin; r < height; r++)
+                for (int r = firstRow; r < height; r++)
                 {
                     for (int c = cBegin; c < width; c++)
                     {
@@ -117,7 +127,10 @@ namespace MinePlug
                         break;
                 }
                 if (!Catch)
+                {
+                    //Console.WriteLine("line 122");
                     return null;
+                }
             }
             int Row = 0, Col = 0;
             for (int r = firstRow; r < height; r += 16)
@@ -164,11 +177,18 @@ namespace MinePlug
                 if (Row == row)
                     break;
                 if (Col != col)
+                {
+                    //Console.WriteLine("line 172");
+                    //screenCut.Save("C:\\Users\\dell\\Desktop\\172.bmp", System.Drawing.Imaging.ImageFormat.Bmp);
                     return null;
+                }
                 Col = 0;
             }
             if (Row != row)
+            {
+                //Console.WriteLine("line 179");
                 return null;
+            }
 
             board.row = Row;
             board.col = Col;

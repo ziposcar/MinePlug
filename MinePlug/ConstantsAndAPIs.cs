@@ -40,7 +40,10 @@ namespace MinePlug
             ImageSources.redmine,
             ImageSources.wrong,
             ImageSources.happy,
-            ImageSources.death
+            ImageSources.death,
+            ImageSources.win,
+            ImageSources.facedown,
+            ImageSources.morsedown
         };
     }
     public partial class main
