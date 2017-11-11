@@ -1,0 +1,8 @@
+D:\WandS\MinePlug\MinePlug\bin\Release\MinePlug.exe.config
+D:\WandS\MinePlug\MinePlug\bin\Release\MinePlug.exe
+D:\WandS\MinePlug\MinePlug\bin\Release\MinePlug.pdb
+D:\WandS\MinePlug\MinePlug\obj\Release\MinePlug.ImageSources.resources
+D:\WandS\MinePlug\MinePlug\obj\Release\MinePlug.csproj.GenerateResource.Cache
+D:\WandS\MinePlug\MinePlug\obj\Release\MinePlug.csproj.CoreCompileInputs.cache
+D:\WandS\MinePlug\MinePlug\obj\Release\MinePlug.exe
+D:\WandS\MinePlug\MinePlug\obj\Release\MinePlug.pdb
