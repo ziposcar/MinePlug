@@ -51,10 +51,15 @@ namespace MinePlug
         public int row, col;
         public int[] happyFace;
 
+        public int NumOfPieces;     // Pieces that left at on the boart
+        public int NumOfFlags;      // Flags that left at on the boart
+        public int NumOfMines;      // Mines that left at on the boart
+
         public Pieces(int row, int col)
         {
             board = new OnePiece[row, col];
             happyFace = new int[2];
+            NumOfFlags = NumOfPieces = NumOfMines = 0;
             for (int i = 0; i < row; i++)
             {
                 for (int j = 0; j < col; j++)
@@ -334,7 +339,8 @@ namespace MinePlug
                             point[0] = i;
                             point[1] = j;
                         }
-                        else if (board.board[i,j].NumOfMinesLeft * board.board[point[0],point[1]].NumOfPiecesLeft
+                        else if (board.board[point[0], point[1]].NumOfPiecesLeft != 0 && board.board[i, j].NumOfPiecesLeft != 0
+                            && board.board[i,j].NumOfMinesLeft * board.board[point[0],point[1]].NumOfPiecesLeft
                             < board.board[i, j].NumOfPiecesLeft * board.board[point[0], point[1]].NumOfMinesLeft)
                         {
                             point[0] = i;
